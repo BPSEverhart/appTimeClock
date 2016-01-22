@@ -1,0 +1,37 @@
+<div data-role="page" class="" id="timePage">
+    <div data-role="header" class="">
+        <h1>Time Clock Entry</h1>
+        <a href="#settingsPage" id='settingsButton' class="ui-btn-right" data-role="button" data-icon="gear">Settings</a>
+    </div>
+    <div data-role="content" class="">
+        <form>
+            <div data-role="fieldcontain">
+                <label for="serviceDate">Service Date:</label>
+                <input type="date" name="serviceDate" id="serviceDate" data-clear-btn="true" value="" placeholder="Enter date of service call">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="serviceStart">Service Start Time:</label>
+                <input type="time" name="serviceStart" id="serviceStart" data-clear-btn="true" value="" placeholder="Enter start time">
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="serviceEnd">Service End Time:</label>
+                <input type="time" name="serviceEnd" id="serviceEnd" data-clear-btn="true" value="" placeholder="Enter end time">
+            </div>
+
+            <p style="text-align: center;">
+                <a href="#" id="getLocation" data-role="button" data-icon="check">Get Location</a>
+            </p>
+
+            <p class="fromGPS">
+                <label>Location:</label>
+                <span id="Location"></span>
+            </p>
+
+            <p style="text-align: center;">
+                <a href="#" id="submitBtn" data-role="button">Submit</a>
+            </p>
+
+        </form>
+    </div>
+</div>

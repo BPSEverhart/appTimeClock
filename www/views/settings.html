@@ -1,0 +1,29 @@
+<div data-role="page" class="" id="settingsPage" data-add-back-btn="true" >
+    <div data-role="header" class="">
+        <a class="ui-btn ui-icon-delete ui-btn-icon-left" ng-click="goToTime()" data-rel="back">Cancel</a>
+        <h1>App Settings</h1>
+    </div>
+    <div data-role="content" class="">
+        <form name="settingsForm">
+            <div>
+                <label>Employee Name:</label>
+                <input type="text" name="empName" id="empName" value="" placeholder="Enter your name:">
+                <!--<span class="error" ng-show="settingsForm.empName.$error.required">required</span>  -->
+            </div>
+            <div>
+                <label>Employee Number:</label>
+                <input type="text" name="empNumber" id="empNumber" value="" placeholder="Enter your employee number/id:">
+                <!-- <span class="error" ng-show="settingsForm.empNumber.$error.required">required</span>   -->
+            </div>
+            <div>
+                <label>Supervisor Email:</label>
+                <input type="email" name="emailAddress" id="emailAddress" value="" placeholder="Enter email address of supervisor">
+                <!-- <span class="error" ng-show="settingsForm.emailAddress.$error.required">required</span> -->
+                <!-- <span class="error" ng-show="settingsForm.emailAddress.$error.email">invalid email</span>  -->
+            </div>
+            <p style="text-align: center;">
+                <a href="#" id='saveSettings' data-role="button" data-inline="true" data-icon="check">Save</a>
+            </p>
+        </form>
+    </div>
+</div>
