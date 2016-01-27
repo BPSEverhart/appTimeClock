@@ -1,9 +1,21 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.bps.timeclock" version="1.0.0">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns="http://www.w3.org/ns/widgets"
+        xmlns:gap="http://phonegap.com/ns/1.0"
+        id="com.bps.timeclock"
+        version="1.0.0">
+
   <name>appTimeClock</name>
-  <description>Hello World sample application that responds to the deviceready event.</description>
-  <author href="http://phonegap.com" email="support@phonegap.com">PhoneGap Team</author>
+
+  <description>Application for Time Keeping.</description>
+
+  <author href="http://phonegap.com" email="sharyn.everhart@gmail.com">
+    Sharyn Everhart for Burco Professional Services</author>
+
   <content src="index.html"/>
+
   <preference name="permissions" value="none"/>
+
   <preference name="orientation" value="default"/>
   <preference name="target-device" value="universal"/>
   <preference name="fullscreen" value="true"/>
@@ -18,6 +30,7 @@
   <preference name="disable-cursor" value="false"/>
   <preference name="android-minSdkVersion" value="14"/>
   <preference name="android-installLocation" value="auto"/>
+
   <gap:plugin name="org.apache.cordova.battery-status"/>
   <gap:plugin name="org.apache.cordova.camera"/>
   <gap:plugin name="org.apache.cordova.media-capture"/>
@@ -52,6 +65,7 @@
   <icon src="www/res/icon/webos/icon-64.png" gap:platform="webos"/>
   <icon src="www/res/icon/windows-phone/icon-48.png" gap:platform="winphone"/>
   <icon src="www/res/icon/windows-phone/icon-173-tile.png" gap:platform="winphone" gap:role="background"/>
+
   <gap:splash src="www/res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:qualifier="port-ldpi"/>
   <gap:splash src="www/res/screen/android/screen-mdpi-portrait.png" gap:platform="android" gap:qualifier="port-mdpi"/>
   <gap:splash src="www/res/screen/android/screen-hdpi-portrait.png" gap:platform="android" gap:qualifier="port-hdpi"/>
@@ -63,7 +77,9 @@
   <gap:splash src="www/res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
   <gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
   <gap:splash src="www/res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>
+
   <access origin="*"/>
+
   <plugin name="cordova-plugin-whitelist" version="1"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
@@ -71,11 +87,14 @@
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
+
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>
+
   <platform name="ios">
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
   </platform>
+
 </widget>

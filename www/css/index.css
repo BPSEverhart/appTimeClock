@@ -126,14 +126,19 @@ label {
     margin-right: 5px;
 }
 
-input[type="text"] {
+#empName, #empNumber {
     display: inline-block;
     border: 1px solid #ebebeb;
     margin-left: 5px;
     margin-right: 5px;
-    margin-bottom: 5px;
     padding: 5px;
 }
+
+#address {
+    width: 100%;
+    border: none;
+}
+
 td {
     margin-left: 5px;
     margin-right: 5px;

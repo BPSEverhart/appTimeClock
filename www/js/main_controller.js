@@ -6,6 +6,22 @@ angular.module("tcApp").controller("MainController",
             return dateObj.hours.toString() + ":" + dateObj.minutes.toString() + ":" + dateObj.seconds.toString();
         };
 
+        $scope.emailAddress = function (value) {
+            if (value === null || value != undefined) {
+                localStorage.setItem("_email_address", value);
+            }
+            return localStorage.getItem("_email_address");
+        };
+        $scope.empName = localStorage.getItem("_empName");
+
+        $scope.empNumber = localStorage.getItem("_empNumber");
+
+        $scope.saveSettings = function() {
+            localStorage.setItem('_empName', $scope.empName);
+
+            localStorage.setItem('_empNumber', $scope.empNumber);
+        };
+
         // variables to control display of data.
         $scope.driveInClocked = false;
         $scope.serviceInClocked = false;
@@ -56,15 +72,16 @@ angular.module("tcApp").controller("MainController",
             // call to get the location
             GetGeolocation();
             $scope.serviceInClocked = true;
-            $scope.ServButtonOn = false;
-            $scope.ServButtonOut = true;
+            $scope.ServIn = false;
+            $scope.ServOut = true;
         };
 
         // Clock out for Service call, displays the service complete time, ends the job
         $scope.serviceOutClock = function () {
             $scope.serviceOutTime = new Date();
             $scope.serviceOutClocked = true;
-            $scope.ServButtonOut = false;
+            $scope.ServOut = false;
+
         };
 
         $scope.goToTime = function () {

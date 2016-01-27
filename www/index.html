@@ -41,24 +41,13 @@
     <script type="text/javascript" src="bower_components/moment/moment.js"></script>
     <script type="text/javascript" src="bower_components/ionic/release/js/ionic.bundle.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/routes.js"></script>
     <script type="text/javascript" src="js/locations.js"></script>
     <script type="text/javascript" src="js/main_controller.js"></script>
-    <script type="text/javascript" src="js/time_controller.js"></script>
-    <script type="text/javascript" src="js/settings_controller.js"></script>
 
 </head>
 
 <body ng-controller="MainController" ng-class="pageCssClass()">
-<!--<div class="app">
-    <h1>Time Clock</h1>
-    <button class="button button-primary" ng-click="goToTime()">Start</button>
-    <button class="button button-primary" ng-click="goToSettings()">Settings</button>
-    <div id="deviceready" class="blink">
-        <p class="event listening">Connecting to Device</p>
-        <p class="event received">Device is Ready</p>
-    </div>
-</div>  -->
+
 <div data-role="page" class="" id="mainPage">
     <ion-content>
 
@@ -73,12 +62,12 @@
                 <table>
                     <tr>
                         <td><label><h4>Employee Name: </h4></label></td>
-                        <td><input type="text" name="empName" id="empName" value=""></td>
+                        <td><input type="text" name="empName" id="empName" ng-model="empName"></td>
                         <td style="text-align:center;"><button class="button button-primary" ng-click="saveSettings()">Update</button></td>
                     </tr>
                     <tr>
                         <td><label><h4>Employee Id: </h4></label></td>
-                        <td><input type="text" name="empNumber" id="empNumber" value="" ></td>
+                        <td><input type="text" name="empNumber" id="empNumber" ng-model="empNumber"></td>
                     </tr>
                 </table>
             </form>
@@ -109,7 +98,8 @@
 
             <div ng-show="serviceInClocked">
                 <p>Clock In: {{serviceInTime | date: 'HH:mm:ss'}}</p>
-                <p>Site Location: {{serviceLoc}}</p>
+                <p>Site Location:</p>
+                <input class="address" id="address" />
             </div>
 
             <button ng-show="ServOut" class="button button-primary" ng-click="serviceOutClock()">Clock Out</button>
