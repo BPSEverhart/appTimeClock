@@ -42,6 +42,12 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+            window.requestFileSystem(PERSISTENT, grantedBytes, onInitFS, errorHandler)
+            ;
+        }, function(e) {
+            console.log('Error', e);
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
