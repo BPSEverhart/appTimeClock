@@ -17,7 +17,7 @@
  * under the License.
  */
 
-var tcApp = angular.module('tcApp', ['ionic', 'ngRoute', 'ngResource', 'ngSanitize'])
+var tcApp = angular.module('tcApp', ['ionic'])
     .run(function($rootScope, $location) {
         $location.path("/");
     });
