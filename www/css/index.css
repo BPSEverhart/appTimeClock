@@ -125,13 +125,17 @@ label {
     margin-left: 5px;
     margin-right: 5px;
 }
-
-#empName, #empNumber {
+table {
+    width: 100%;
+}
+#empName, #empNumber, #emailAddress {
     display: inline-block;
     border: 1px solid #ebebeb;
     margin-left: 5px;
     margin-right: 5px;
+    margin-bottom: 5px;
     padding: 5px;
+    width: 90%;
 }
 
 #address {
@@ -142,4 +146,21 @@ label {
 td {
     margin-left: 5px;
     margin-right: 5px;
+}
+h1 {
+    font-size: 18px;
+    text-align: center;
+}
+.button-calm, .button-primary {
+    font-size: 14px;
+    margin-top: 5px;
+    text-transform: none;
+    min-height: 32px !important;
+    line-height: 32px !important;
+    background-color: #d5d1e2 !important;
+    border-color: #979797 !important;
+    color: #1f1f1f !important;
+}
+.bk-blue {
+    background-color: #d5ddff;
 }

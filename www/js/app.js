@@ -20,7 +20,7 @@
 
 $( document ).on( "ready", function(){
     //$('#submitTime').on('click', submitTime);
-    $('#saveSettings').on('click', saveSettings);
+    //$('#saveSettings').on('click', saveSettings);
 
     var emailAddress = localStorage.getItem('emailAddress');
     $('#emailAddress').val(emailAddress);
