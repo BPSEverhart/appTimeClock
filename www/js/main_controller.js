@@ -1,28 +1,10 @@
 angular.module("tcApp").controller("MainController",
     function($scope, $rootScope, $location) {
 
-        $scope.timediff = function(start, end) {
-            var dateObj = moment(moment(end).diff(moment(start))).toObject();
-            return dateObj.hours.toString() + ":" + dateObj.minutes.toString() + ":" + dateObj.seconds.toString();
-        };
-
-        $scope.emailAddress = function (value) {
-            if (value === null || value != undefined) {
-                localStorage.setItem("_email_address", value);
-            }
-            return localStorage.getItem("_email_address");
-        };
-        $scope.empName = localStorage.getItem("_empName");
-
-        $scope.empNumber = localStorage.getItem("_empNumber");
-
-        $scope.saveSettings = function() {
-            localStorage.setItem('_empName', $scope.empName);
-
-            localStorage.setItem('_empNumber', $scope.empNumber);
-        };
 
         // variables to control display of data.
+        $scope.mainPage = true;
+        $scope.settingsShow = false;
         $scope.driveInClocked = false;
         $scope.serviceInClocked = false;
         $scope.serviceOutClocked = false;
@@ -45,6 +27,32 @@ angular.module("tcApp").controller("MainController",
         $scope.serviceInTime = null;
         $scope.serviceOutTime = null;
         $scope.serviceLoc = "";
+
+        $scope.timediff = function(start, end) {
+            var dateObj = moment(moment(end).diff(moment(start))).toObject();
+            return dateObj.hours.toString() + ":" + dateObj.minutes.toString() + ":" + dateObj.seconds.toString();
+        };
+
+        $scope.showSettings = function () {
+            $scope.settingsShow = true;
+            $scope.mainPage = false;
+        };
+
+        $scope.emailAddress = function (value) {
+            if (value === null || value != undefined) {
+                localStorage.setItem("_email_address", value);
+            }
+            return localStorage.getItem("_email_address");
+        };
+        $scope.empName = localStorage.getItem("_empName");
+
+        $scope.empNumber = localStorage.getItem("_empNumber");
+
+        $scope.saveSettings = function() {
+            localStorage.setItem('_empName', $scope.empName);
+
+            localStorage.setItem('_empNumber', $scope.empNumber);
+        };
 
         $scope.lunchClock = function(action) {
             if (action == 'in') {
