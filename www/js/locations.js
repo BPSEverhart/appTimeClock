@@ -1,4 +1,4 @@
-function GetGeolocation(callback)
+function GetGeolocation()
 {
     var options = { timeout: 30000, enableHighAccuracy: true };
     navigator.geolocation.getCurrentPosition(GetPosition, PositionError, options);
@@ -36,11 +36,4 @@ function ReverseGeocode(latitude, longitude) {
         var address = document.getElementById('address');
         address.value = myAddress;
     });
-}
-
-function FormatDate() {
-    var d = new Date();
-
-    var dateStr = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
-    return dateStr;
 }
