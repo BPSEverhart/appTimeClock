@@ -49,6 +49,7 @@ angular.module("tcApp").controller("MainController",
                     $scope.mainPage = true;
                 }
             );
+            $scope.message = "Name: " + $scope.empName + "\nNumber/Id: " + $scope.empNumber;
         };
 
         $scope.cancel = function() {
@@ -60,10 +61,12 @@ angular.module("tcApp").controller("MainController",
             if (action == 'in') {
                 $scope.lunchStartTime = new Date();
                 $scope.lunchStarted = true;
+                $scope.message += "\n\nLunch: \n\t" + $scope.lunchStartTime;
             }
             else {
                 $scope.lunchEndTime = new Date();
                 $scope.lunchLogged = true;
+                $scope.message += "\n\t" + $scope.lunchEndTime;
             }
         };
 
@@ -76,7 +79,7 @@ angular.module("tcApp").controller("MainController",
             $scope.serviceOutClocked = false;
             $scope.StartOn = false;
             $scope.ServIn = true;
-            $scope.message = "New Job \n\tTravel Clock In: " + $scope.driveInClocked;
+            $scope.message += "\n\nNew Job \n\tTravel Clock In: " + $scope.driveInTime;
         };
 
         // Clock in for actual Service call, displays the travel clock out and the service start
@@ -87,20 +90,31 @@ angular.module("tcApp").controller("MainController",
             $scope.serviceInClocked = true;
             $scope.ServIn = false;
             $scope.ServOut = true;
+            $scope.message += "\n\tTravel Clock Out: " + $scope.serviceInTime +
+                              "\n\n\tService Clock In: " + $scope.serviceInTime;
         };
 
         // Clock out for Service call, displays the service complete time, ends the job
         $scope.serviceOutClock = function () {
             $scope.serviceOutTime = new Date();
             $scope.serviceOutClocked = true;
+            $scope.serviceLoc = document.getElementById('address').value;
             $scope.ServOut = false;
             $scope.StartOn = true;
+            $scope.message += "\n\tService Location: " + $scope.serviceLoc +
+                              "\n\tService Clock Out: " + $scope.serviceOutTime;
+            console.log($scope.message);
+        };
+
+        $scope.closeOut = function () {
+
         };
 
         $scope.init = function() {
             $scope.empName = Settings.empName();
             $scope.empNumber = Settings.empNumber();
             $scope.emailAddress = Settings.emailAddress();
+            $scope.message = "Name: " + $scope.empName + "\nNumber/Id: " + $scope.empNumber;
         };
 
         $scope.init();

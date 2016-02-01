@@ -35,5 +35,18 @@ angular.module("tcApp").service("Settings", ["localStorage",
             }
         };
 
-        }]);
+        this.saveDriveIn = function() {
+
+        };
+
+        this.saveServiceIn = function() {
+
+        };
+
+        this.saveServiceOut = function() {
+
+        };
+
+
+    }]);
 
