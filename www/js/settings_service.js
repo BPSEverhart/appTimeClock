@@ -43,7 +43,6 @@ angular.module("tcApp").service("Settings", ["localStorage",
         // Service Times and Locations
         this.driveInTime = function (value) {
             if (value === null || value != undefined) {
-                console.log(value);
                 localStorage.setItem("_driveInTime", value);
             }
             return localStorage.getItem("_driveInTime");
@@ -85,6 +84,18 @@ angular.module("tcApp").service("Settings", ["localStorage",
                 localStorage.setItem("_serviceOutClocked", value);
             }
             return localStorage.getItem("_serviceOutClocked");
+        };
+        this.lunchStarted= function(value) {
+            if (value === null || value != undefined) {
+                localStorage.setItem("_lunchStarted", value);
+            }
+            return localStorage.getItem("_lunchStarted");
+        };
+        this.lunchLogged= function(value) {
+            if (value === null || value != undefined) {
+                localStorage.setItem("_lunchLogged", value);
+            }
+            return localStorage.getItem("_lunchLogged");
         };
 
         // Built up email message

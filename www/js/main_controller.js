@@ -8,7 +8,6 @@ angular.module("tcApp").controller("MainController",
         $scope.driveInClocked = false;
         $scope.serviceInClocked = false;
         $scope.serviceOutClocked = false;
-        $scope.lunchLogged = false;
 
         // variables to control the display of buttons
         $scope.StartOn = true;
@@ -68,13 +67,13 @@ angular.module("tcApp").controller("MainController",
             if (action == 'in') {
                 $scope.lunchStartTime = new Date();
                 Settings.lunchStartTime($scope.lunchStartTime);
-                $scope.lunchStarted = true;
+                $scope.lunchStarted = Settings.lunchStarted(true);
                 $scope.message += "\n\nLunch: \n\t" + $scope.lunchStartTime;
             }
             else {
                 $scope.lunchEndTime = new Date();
-                Settings.lunchEndTime($scope.lunchStartTime);
-                $scope.lunchLogged = true;
+                Settings.lunchEndTime($scope.lunchEndTime);
+                $scope.lunchLogged = Settings.lunchLogged(true);
                 $scope.message += "\n\t" + $scope.lunchEndTime;
             }
             Settings.messageSaved($scope.message);
@@ -125,7 +124,6 @@ angular.module("tcApp").controller("MainController",
         $scope.closeOut = function () {
             $scope.closeOutTime = new Date();
             if (document.getElementById('perDiem').checked) {
-                console.log("Checked");
                 $scope.message += "\n\nPer Diem Requested";
             }
             $scope.message += "\n\nFinal Clock Out: " + $scope.closeOutTime;
@@ -134,14 +132,32 @@ angular.module("tcApp").controller("MainController",
 
             // clear all saved data
             $scope.mainPage = true;
-            $scope.driveInClocked = Settings.driveInClocked(false);
-            $scope.serviceInClocked = Settings.serviceInClocked(false);
-            $scope.serviceOutClocked = Settings.serviceOutClocked(false);
+
+            $scope.driveInClocked = false;
+            Settings.driveInClocked(false);
+
+            $scope.serviceInClocked = false;
+            Settings.serviceInClocked(false);
+
+            $scope.serviceOutClocked = false;
+            Settings.serviceOutClocked(false);
+
+            $scope.lunchStarted = false;
+            Settings.lunchStarted(false);
+
+            $scope.lunchLogged = false;
+            Settings.lunchLogged(false);
+
             $scope.message = "Name: " + $scope.empName + "\nNumber/Id: " + $scope.empNumber;
             Settings.messageSaved($scope.message);
+
+            $scope.StartOn = true;
+            $scope.ServIn = false;
+            $scope.ServOut = false;
         };
 
         $scope.init = function() {
+            console.log("in init");
             $scope.mydate = new Date();
             $scope.empName = Settings.empName();
             $scope.empNumber = Settings.empNumber();
@@ -151,8 +167,9 @@ angular.module("tcApp").controller("MainController",
                 $scope.message = "Name: " + $scope.empName + "\nNumber/Id: " + $scope.empNumber;
                 Settings.messageSaved($scope.message);
             }
-            else
-              $scope.message = Settings.messageSaved();
+            else {
+                $scope.message = Settings.messageSaved();
+            }
 
             $scope.driveInTime = new Date(Settings.driveInTime());
             $scope.serviceInTime = new Date(Settings.serviceInTime());
@@ -160,8 +177,17 @@ angular.module("tcApp").controller("MainController",
             $scope.lunchStartTime = new Date(Settings.lunchStartTime());
             $scope.lunchEndTime = new Date(Settings.lunchEndTime());
 
+            if (Settings.lunchStarted() == true) {
+                console.log("lunchStarted true");
+                $scope.lunchStarted = true;
+            }
+            if (Settings.lunchLogged() == true) {
+                console.log("lunchLogged true");
+                $scope.lunchLogged = true;
+            }
 
             if (Settings.driveInClocked()) {
+                console.log("setting driveIn");
                 $scope.driveInClocked = true;
                 $scope.serviceInClocked = false;
                 $scope.serviceOutClocked = false;
@@ -169,14 +195,16 @@ angular.module("tcApp").controller("MainController",
                 $scope.ServIn = true;
             }
 
-            if (Settings.serviceInClocked()) {
+            if (Settings.serviceInClocked() == true) {
+                console.log("setting servIn");
                 $scope.serviceInClocked = true;
                 $scope.ServIn = false;
                 $scope.ServOut = true;
                 GetGeolocation();
             }
 
-            if (Settings.serviceOutClocked()) {
+            if (Settings.serviceOutClocked() == true) {
+                console.log("setting servOut");
                 $scope.serviceOutClocked = true;
                 $scope.serviceLoc = Settings.serviceLoc();
                 var address = document.getElementById('address');
