@@ -1,5 +1,5 @@
 angular.module("tcApp").controller("MainController",
-    function($scope, $rootScope, $location) {
+    function($scope, $rootScope, $location, Settings) {
 
 
         // variables to control display of data.
@@ -23,6 +23,7 @@ angular.module("tcApp").controller("MainController",
 
         // variables for maintaining the display of dates and times
         $scope.mydate = new Date();
+        $scope.message = "";
         $scope.driveInTime = null;
         $scope.serviceInTime = null;
         $scope.serviceOutTime = null;
@@ -38,20 +39,21 @@ angular.module("tcApp").controller("MainController",
             $scope.mainPage = false;
         };
 
-        $scope.emailAddress = function (value) {
-            if (value === null || value != undefined) {
-                localStorage.setItem("_email_address", value);
-            }
-            return localStorage.getItem("_email_address");
+        $scope.saveMySettings = function (emp, num, email) {
+
+            Settings.saveSettings(emp, num, email, function() {
+                    $scope.empName = Settings.empName();
+                    $scope.empNumber = Settings.empNumber();
+                    $scope.emailAddress = Settings.emailAddress();
+                    $scope.settingsShow = false;
+                    $scope.mainPage = true;
+                }
+            );
         };
-        $scope.empName = localStorage.getItem("_empName");
 
-        $scope.empNumber = localStorage.getItem("_empNumber");
-
-        $scope.saveSettings = function() {
-            localStorage.setItem('_empName', $scope.empName);
-
-            localStorage.setItem('_empNumber', $scope.empNumber);
+        $scope.cancel = function() {
+            $scope.settingsShow = false;
+            $scope.mainPage = true;
         };
 
         $scope.lunchClock = function(action) {
@@ -70,8 +72,11 @@ angular.module("tcApp").controller("MainController",
             // create a new job to be logged.
             $scope.driveInTime = new Date();
             $scope.driveInClocked = true;
+            $scope.serviceInClocked = false;
+            $scope.serviceOutClocked = false;
             $scope.StartOn = false;
             $scope.ServIn = true;
+            $scope.message = "New Job \n\tTravel Clock In: " + $scope.driveInClocked;
         };
 
         // Clock in for actual Service call, displays the travel clock out and the service start
@@ -89,25 +94,13 @@ angular.module("tcApp").controller("MainController",
             $scope.serviceOutTime = new Date();
             $scope.serviceOutClocked = true;
             $scope.ServOut = false;
-
-        };
-
-        $scope.goToTime = function () {
-            $location.path("/time/");
-        };
-
-        $scope.goToSettings = function () {
-            $location.path("/settings/");
-        };
-
-        $scope.pageCssClass = function() {
-            var body_class = "";
-            body_class += $location.path().replace(/\//g, ' ');
-            return body_class;
+            $scope.StartOn = true;
         };
 
         $scope.init = function() {
-
+            $scope.empName = Settings.empName();
+            $scope.empNumber = Settings.empNumber();
+            $scope.emailAddress = Settings.emailAddress();
         };
 
         $scope.init();

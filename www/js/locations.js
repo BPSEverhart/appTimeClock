@@ -1,16 +1,13 @@
 function GetGeolocation()
 {
-    console.log ("in GetGeolocation");
     var options = { timeout: 30000, enableHighAccuracy: true };
     navigator.geolocation.getCurrentPosition(GetPosition, PositionError, options);
 }
 
 function GetPosition(position)
 {
-    console.log ("in GetPosition");
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-    console.log (latitude, longitude)
     ReverseGeocode(latitude,longitude);   // Pass the latitude and longitude to get address.
 }
 
@@ -18,9 +15,7 @@ function PositionError() {
     navigator.notification.alert('Could not find the current location.');
 }
 
-function ReverseGeocode(latitude, longitude){
-    console.log ("in ReverseGeocode");
-
+function ReverseGeocode(latitude, longitude) {
     var myAddress = "";
     var reverseGeocoder = new google.maps.Geocoder();
     var currentPosition = new google.maps.LatLng(latitude, longitude);
@@ -28,7 +23,6 @@ function ReverseGeocode(latitude, longitude){
 
         if (status == google.maps.GeocoderStatus.OK) {
             if (results[0]) {
-                console.log(results[0].formatted_address);
                 myAddress = results[0].formatted_address;
             }
             else {
@@ -42,4 +36,11 @@ function ReverseGeocode(latitude, longitude){
         var address = document.getElementById('address');
         address.value = myAddress;
     });
+}
+
+function FormatDate() {
+    var d = new Date();
+
+    var dateStr = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+    return dateStr;
 }
