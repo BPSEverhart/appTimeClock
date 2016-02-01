@@ -52,7 +52,7 @@ angular.module("tcApp").controller("MainController",
                     $scope.mainPage = true;
                 }
             );
-            $scope.message = "Name: " + $scope.empName + "\nNumber/Id: " + $scope.empNumber;
+            $scope.message = "Name: \t\t\t" + $scope.empName + "\nNumber/Id: \t\t" + $scope.empNumber;
             Settings.messageSaved($scope.message);
         };
 
@@ -85,11 +85,13 @@ angular.module("tcApp").controller("MainController",
             $scope.driveInTime = new Date();
             Settings.driveInTime($scope.driveInTime);
             $scope.driveInClocked = Settings.driveInClocked(true);
+            Settings.serviceInClocked(false);
             $scope.serviceInClocked = false;
+            Settings.serviceOutClocked(false);
             $scope.serviceOutClocked = false;
             $scope.StartOn = false;
             $scope.ServIn = true;
-            $scope.message += "\n\nNew Job \n\tTravel Clock In: " + $scope.driveInTime;
+            $scope.message += "\n\nNew Job \n\tTravel Clock In: \t\t" + $scope.driveInTime;
             Settings.messageSaved($scope.message);
         };
 
@@ -102,8 +104,8 @@ angular.module("tcApp").controller("MainController",
             $scope.serviceInClocked = Settings.serviceInClocked(true);
             $scope.ServIn = false;
             $scope.ServOut = true;
-            $scope.message += "\n\tTravel Clock Out: " + $scope.serviceInTime +
-                              "\n\n\tService Clock In: " + $scope.serviceInTime;
+            $scope.message += "\n\tTravel Clock Out: \t" + $scope.serviceInTime +
+                              "\n\n\tService Clock In: \t\t" + $scope.serviceInTime;
             Settings.messageSaved($scope.message);
         };
 
@@ -116,8 +118,8 @@ angular.module("tcApp").controller("MainController",
             Settings.serviceLoc($scope.serviceLoc);
             $scope.ServOut = false;
             $scope.StartOn = true;
-            $scope.message += "\n\tService Location: " + $scope.serviceLoc +
-                              "\n\tService Clock Out: " + $scope.serviceOutTime;
+            $scope.message += "\n\tService Clock Out: \t" + $scope.serviceOutTime +
+                              "\n\tService Location: \t\t" + $scope.serviceLoc;
             Settings.messageSaved($scope.message);
         };
 
@@ -126,7 +128,7 @@ angular.module("tcApp").controller("MainController",
             if (document.getElementById('perDiem').checked) {
                 $scope.message += "\n\nPer Diem Requested";
             }
-            $scope.message += "\n\nFinal Clock Out: " + $scope.closeOutTime;
+            $scope.message += "\n\nFinal Clock Out: \t\t" + $scope.closeOutTime;
             // send email
             console.log($scope.message);
 
@@ -157,7 +159,6 @@ angular.module("tcApp").controller("MainController",
         };
 
         $scope.init = function() {
-            console.log("in init");
             $scope.mydate = new Date();
             $scope.empName = Settings.empName();
             $scope.empNumber = Settings.empNumber();
@@ -177,17 +178,14 @@ angular.module("tcApp").controller("MainController",
             $scope.lunchStartTime = new Date(Settings.lunchStartTime());
             $scope.lunchEndTime = new Date(Settings.lunchEndTime());
 
-            if (Settings.lunchStarted() == true) {
-                console.log("lunchStarted true");
+            if (Settings.lunchStarted() === "true") {
                 $scope.lunchStarted = true;
             }
-            if (Settings.lunchLogged() == true) {
-                console.log("lunchLogged true");
+            if (Settings.lunchLogged() === "true") {
                 $scope.lunchLogged = true;
             }
 
-            if (Settings.driveInClocked()) {
-                console.log("setting driveIn");
+            if (Settings.driveInClocked() === "true") {
                 $scope.driveInClocked = true;
                 $scope.serviceInClocked = false;
                 $scope.serviceOutClocked = false;
@@ -195,16 +193,14 @@ angular.module("tcApp").controller("MainController",
                 $scope.ServIn = true;
             }
 
-            if (Settings.serviceInClocked() == true) {
-                console.log("setting servIn");
+            if (Settings.serviceInClocked() === "true") {
                 $scope.serviceInClocked = true;
                 $scope.ServIn = false;
                 $scope.ServOut = true;
                 GetGeolocation();
             }
 
-            if (Settings.serviceOutClocked() == true) {
-                console.log("setting servOut");
+            if (Settings.serviceOutClocked() === "true") {
                 $scope.serviceOutClocked = true;
                 $scope.serviceLoc = Settings.serviceLoc();
                 var address = document.getElementById('address');
