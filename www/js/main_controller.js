@@ -1,7 +1,6 @@
 angular.module("tcApp").controller("MainController",
     function($scope, $rootScope, $location, Settings) {
 
-
         // variables to control display of data.
         $scope.mainPage = true;
         $scope.settingsShow = false;
@@ -124,6 +123,7 @@ angular.module("tcApp").controller("MainController",
         };
 
         $scope.closeOut = function () {
+            $scope.sendTo = ["april@westerntel-com.com", $scope.emailAddress];
             $scope.closeOutTime = new Date();
             if (document.getElementById('perDiem').checked) {
                 $scope.message += "\n\nPer Diem Requested";
@@ -131,6 +131,13 @@ angular.module("tcApp").controller("MainController",
             $scope.message += "\n\nFinal Clock Out: \t\t" + $scope.closeOutTime;
             // send email
             console.log($scope.message);
+
+            cordova.plugins.email.open({
+                to:         $scope.sendTo,         // email addresses for TO field
+                subject:    "My Time Sheet",       // subject of the email
+                body:       $scope.message,        // email body (for HTML, set isHtml to true)
+                isHtml:     false                  // indicates if the body is HTML or plain text
+            }, function() {}, this);
 
             // clear all saved data
             $scope.mainPage = true;

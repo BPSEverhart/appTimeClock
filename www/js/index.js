@@ -44,12 +44,6 @@ var app = {
         app.receivedEvent('deviceready');
         StatusBar.overlaysWebView( false );
         StatusBar.backgroundColorByName("gray");
-        window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
-            window.requestFileSystem(PERSISTENT, grantedBytes, onInitFS, errorHandler)
-            ;
-        }, function(e) {
-            console.log('Error', e);
-        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<widget xmlns="http://www.w3.org/ns/widgets"
-        xmlns:gap="http://phonegap.com/ns/1.0"
-        id="com.bps.timeclock"
-        version="1.0.0">
+<widget xmlns     ="http://www.w3.org/ns/widgets"
+        xmlns:gap ="http://phonegap.com/ns/1.0"
+        xmlns:android   = "http://schemas.android.com/apk/res/android"
+        id        ="com.bps.timeclock"
+        version   ="1.0.0">
 
-  <name>appTimeClock</name>
+  <name>BPS Time Clock</name>
 
-  <description>Application for Time Keeping.</description>
+  <description>
+    Application for Time Keeping.
+  </description>
 
   <author href="http://phonegap.com" email="sharyn.everhart@gmail.com">
-    Sharyn Everhart for Burco Professional Services</author>
+    Sharyn Everhart for Burco Professional Services
+  </author>
+
+  <feature name="http://api.phonegap.com/1.0/device" />
 
   <content src="index.html"/>
 
@@ -27,7 +33,7 @@
   <preference name="detect-data-types" value="true"/>
   <preference name="exit-on-suspend" value="false"/>
   <preference name="show-splash-screen-spinner" value="true"/>
-  <preference name="auto-hide-splash-screen" value="true"/>
+  <preference name="auto-hide-splash-screen" value="false"/>
   <preference name="disable-cursor" value="false"/>
   <preference name="android-minSdkVersion" value="7"/>
   <preference name="android-installLocation" value="auto"/>
