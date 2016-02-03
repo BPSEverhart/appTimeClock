@@ -35,6 +35,7 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener("deviceready", GetGeolocation , false);
+        document.addEventListener("deviceready", cordova.plugin.email , false);
     },
     // deviceready Event Handler
     //
