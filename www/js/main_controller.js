@@ -26,7 +26,7 @@ angular.module("tcApp").controller("MainController",
         $scope.serviceInTime = null;
         $scope.serviceOutTime = null;
         $scope.serviceLoc = "";
-
+        $scope.sendTo = [];
 
         // functions
         $scope.timediff = function(start, end) {
@@ -123,7 +123,7 @@ angular.module("tcApp").controller("MainController",
         };
 
         $scope.closeOut = function () {
-            $scope.sendTo = ["april@westerntel-com.com", $scope.emailAddress];
+            $scope.sendTo = ["april@westerntel-com.com", Settings.emailAddress()];
             $scope.closeOutTime = new Date();
             if (document.getElementById('perDiem').checked) {
                 $scope.message += "\n\nPer Diem Requested";
