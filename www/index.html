@@ -90,6 +90,8 @@
         <ion-item>
             <div>
                 <h3>Service Date:  {{mydate | date:'yyyy-MM-dd'}}</h3>
+                <p>Current Location:</p>
+                <input class="address" id="address" />
             </div>
             <p><button ng-show="StartOn" class="button button-primary" ng-click="driveInClock()">Start New Job</button></p>
         </ion-item>
@@ -112,8 +114,6 @@
 
             <div ng-show="serviceInClocked">
                 <p>Clock In: {{serviceInTime | date: 'HH:mm:ss'}}</p>
-                <p>Site Location:</p>
-                <input class="address" id="address" />
             </div>
 
             <button ng-show="ServOut" class="button button-primary" ng-click="serviceOutClock()">Clock Out</button>

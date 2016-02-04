@@ -18,6 +18,7 @@ angular.module("tcApp").controller("MainController",
         $scope.lunchEndTime = null;
         $scope.lunchStarted = false;
         $scope.lunchLogged = false;
+        $scope.lunchLocation = "";
 
         // variables for maintaining the display of dates and times
         $scope.mydate = new Date();
@@ -68,12 +69,16 @@ angular.module("tcApp").controller("MainController",
                 Settings.lunchStartTime($scope.lunchStartTime);
                 $scope.lunchStarted = Settings.lunchStarted(true);
                 $scope.message += "\n\nLunch: \n\t" + $scope.lunchStartTime;
+                GetGeolocation();
             }
             else {
                 $scope.lunchEndTime = new Date();
                 Settings.lunchEndTime($scope.lunchEndTime);
+                $scope.lunchLocation = document.getElementById('address').value;
+                Settings.lunchLocation($scope.lunchLocation);
                 $scope.lunchLogged = Settings.lunchLogged(true);
-                $scope.message += "\n\t" + $scope.lunchEndTime;
+                $scope.message += "\n\t" + $scope.lunchEndTime +
+                                  "\n\tLunch Location: \t\t" + $scope.lunchLocation;
             }
             Settings.messageSaved($scope.message);
         };
@@ -167,6 +172,8 @@ angular.module("tcApp").controller("MainController",
 
         $scope.init = function() {
             $scope.mydate = new Date();
+            GetGeolocation();
+
             $scope.empName = Settings.empName();
             $scope.empNumber = Settings.empNumber();
             $scope.emailAddress = Settings.emailAddress();
@@ -182,8 +189,11 @@ angular.module("tcApp").controller("MainController",
             $scope.driveInTime = new Date(Settings.driveInTime());
             $scope.serviceInTime = new Date(Settings.serviceInTime());
             $scope.serviceOutTime = new Date(Settings.serviceOutTime());
+            $scope.serviceLoc = Settings.serviceLoc();
             $scope.lunchStartTime = new Date(Settings.lunchStartTime());
             $scope.lunchEndTime = new Date(Settings.lunchEndTime());
+            $scope.lunchLocation = Settings.lunchLocation();
+
 
             if (Settings.lunchStarted() === "true") {
                 $scope.lunchStarted = true;
@@ -204,14 +214,10 @@ angular.module("tcApp").controller("MainController",
                 $scope.serviceInClocked = true;
                 $scope.ServIn = false;
                 $scope.ServOut = true;
-                GetGeolocation();
             }
 
             if (Settings.serviceOutClocked() === "true") {
                 $scope.serviceOutClocked = true;
-                $scope.serviceLoc = Settings.serviceLoc();
-                var address = document.getElementById('address');
-                address.value = $scope.serviceLoc;
                 $scope.ServOut = false;
                 $scope.StartOn = true;
             }

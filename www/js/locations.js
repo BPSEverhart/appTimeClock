@@ -1,4 +1,4 @@
-function GetGeolocation()
+function GetGeolocation(destAddress)
 {
     var options = { timeout: 30000, enableHighAccuracy: true };
     navigator.geolocation.getCurrentPosition(GetPosition, PositionError, options);

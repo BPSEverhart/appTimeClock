@@ -39,6 +39,12 @@ angular.module("tcApp").service("Settings", ["localStorage",
             }
             return localStorage.getItem("_lunchEndTime");
         };
+        this.lunchLocation = function (value) {
+            if (value === null || value != undefined) {
+                localStorage.setItem("_lunchLocation", value);
+            }
+            return localStorage.getItem("_lunchLocation");
+        };
 
         // Service Times and Locations
         this.driveInTime = function (value) {
