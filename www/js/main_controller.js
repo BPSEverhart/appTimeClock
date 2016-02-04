@@ -79,12 +79,14 @@ angular.module("tcApp").controller("MainController",
                 $scope.lunchLogged = Settings.lunchLogged(true);
                 $scope.message += "\n\t" + $scope.lunchEndTime +
                                   "\n\tLunch Location: \t\t" + $scope.lunchLocation;
+                GetGeolocation();
             }
             Settings.messageSaved($scope.message);
         };
 
         // Start New Job - this clocks in the drive time and displays the travel clock in
         $scope.driveInClock = function () {
+            GetGeolocation();
             // create a new job to be logged.
             $scope.driveInTime = new Date();
             Settings.driveInTime($scope.driveInTime);
@@ -115,6 +117,7 @@ angular.module("tcApp").controller("MainController",
 
         // Clock out for Service call, displays the service complete time, ends the job
         $scope.serviceOutClock = function () {
+            GetGeolocation();
             $scope.serviceOutTime = new Date();
             Settings.serviceOutTime($scope.serviceOutTime);
             $scope.serviceOutClocked = Settings.serviceOutClocked(true);
@@ -128,6 +131,7 @@ angular.module("tcApp").controller("MainController",
         };
 
         $scope.closeOut = function () {
+            GetGeolocation();
             $scope.sendTo = ["april@westerntel-com.com", Settings.emailAddress()];
             $scope.closeOutTime = new Date();
             if (document.getElementById('perDiem').checked) {
