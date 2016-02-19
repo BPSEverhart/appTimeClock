@@ -49,8 +49,6 @@
   <gap:plugin name="de.appplant.cordova.plugin.email-composer" spec="0.8.2" source="pgb" />
 
   <!-- Devices to build the app -->
-  <gap:platform name="ios" />
-  <gap:platform name="android" />
 
   <icon src="icon.png"/>
   <icon src="www/res/icon/android/drawable-ldpi-icon.png"         gap:platform="android"    gap:density="ldpi"/>
@@ -69,11 +67,11 @@
   <gap:splash src="www/res/screen/android/drawable-port-hdpi-screen.png"       gap:platform="android" gap:density="hdpi"/>
   <gap:splash src="www/res/screen/android/drawable-port-xhdpi-screen.png"      gap:platform="android" gap:density="xhdpi"/>
 
-  <gap:splash src="www/res/screen/ios/Default_iphone.png"           gap:platform="ios" />
-  <gap:splash src="www/res/screen/ios/Default@2x~iphone.png"        gap:platform="ios" />
-  <gap:splash src="www/res/screen/ios/Default-568h@2x~iphone.png"   gap:platform="ios" />
-  <gap:splash src="www/res/screen/ios/Default-Portrait@2x~ipad.png" gap:platform="ios" />
-  <gap:splash src="www/res/screen/ios/Default-Portrait~ipad.png"    gap:platform="ios" />
+  <gap:splash src="www/res/screen/ios/Default~iphone.png"           gap:platform="ios" width="320" height="480" />
+  <gap:splash src="www/res/screen/ios/Default@2x~iphone.png"        gap:platform="ios" width="640" height="960"/>
+  <gap:splash src="www/res/screen/ios/Default-568h@2x~iphone.png"   gap:platform="ios" width="640" height="1136"/>
+  <gap:splash src="www/res/screen/ios/Default-Landscape~ipad.png"   gap:platform="ios" width="1024" height="768"/>
+  <gap:splash src="www/res/screen/ios/Default-Portrait~ipad.png"    gap:platform="ios" width="768" height="1024"/>
 
 
   <access origin="*"/>
